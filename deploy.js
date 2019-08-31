@@ -24,7 +24,7 @@ app.post("/webhooks/github", function (req, res) {
     logDeployment(new Date() + 'Start deploying branch: ' + branch + ', sender: ' + sender.login)
 
     if (branch.indexOf('master') > -1 && sender.login === githubUsername){
-        childProcess.exec('cd /home/marekkregiel/deploy && ./deploy.sh', function(err, stdout, stderr){
+        childProcess.exec('cd /home/marekkregiel/deploy && ./deployAP.sh', function(err, stdout, stderr){
             if (err) {
                 console.error('deployment error:', err);
                 logDeployment(new Date() + 'Error:' + err)
@@ -44,5 +44,5 @@ app.post("/webhooks/github", function (req, res) {
 
 app.listen(3003, function(err) {
     if (err) throw err;
-    console.log('> Ready on http://kregielmarek.com:3003'); 
+    console.log('> Ready on http://kregielmarek.com:3003');
 });
